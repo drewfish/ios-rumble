@@ -22,11 +22,7 @@ let SEISMO_BUFFER_SIZE = 10
 // http://earthquake.usgs.gov/learn/topics/measure.php
 // surface wave magnitude assuming we're at the epicenter
 func richter(val: Double) -> Double {
-    var v = log10(fabs(val)) + 3.3
-    if val < 0.0 {
-        return -v
-    }
-    return v
+    return log10(fabs(val)) + 3.3
 }
 
 
@@ -36,15 +32,12 @@ func richter(val: Double) -> Double {
     init() {}
 
     func onAcceleration(data: CMAcceleration) {
-        ringX.update(data.x)
-        ringY.update(data.y)
-        ringZ.update(data.z)
-        var x = ringX.avg
-        var y = ringY.avg
-        var z = ringZ.avg
-        x = richter(x)
-        y = richter(y)
-        z = richter(z)
+        axisX.update(data.x)
+        axisY.update(data.y)
+        axisZ.update(data.z)
+        var x = axisX.read()
+        var y = axisY.read()
+        var z = axisZ.read()
         delegate?.reportRichter(x: x, y: y, z: z)
     }
 
@@ -68,9 +61,9 @@ func richter(val: Double) -> Double {
             }
             if data != nil {
                 if first {
-                    self.ringX.setup(data!.acceleration.x)
-                    self.ringY.setup(data!.acceleration.y)
-                    self.ringZ.setup(data!.acceleration.z)
+                    self.axisX.setup(data!.acceleration.x)
+                    self.axisY.setup(data!.acceleration.y)
+                    self.axisZ.setup(data!.acceleration.z)
                     first = false
                     return
                 }
@@ -84,26 +77,34 @@ func richter(val: Double) -> Double {
         motionManager?.stopAccelerometerUpdates()
     }
 
-    // uses a ring buffer to keep an average over a moving window
-    @objc class RingAverage {
+    // We auto-zero the values based on a rolling 1-second window.
+    @objc class Axis {
         var ring: [Double] = []
-        var i = 0
-        var avg = 0.0
+        var ringIndex = 0
+        var midValue = 0.0
         init() {}
         func setup(value: Double) {
             ring = Array<Double>(count: SEISMO_BUFFER_SIZE, repeatedValue: value)
         }
         func update(newValue: Double) {
-            i = (i + 1) % SEISMO_BUFFER_SIZE
-            ring[i] = newValue
-            var sum = ring.reduce(0.0) { $0 + $1 }
-            avg = sum / Double(SEISMO_BUFFER_SIZE)
+            ringIndex = (ringIndex + 1) % SEISMO_BUFFER_SIZE
+            ring[ringIndex] = newValue
+            var minValue = ring[0]
+            var maxValue = ring[0]
+            for r in ring {
+                minValue = min(minValue, r)
+                maxValue = max(maxValue, r)
+            }
+            midValue = minValue + ((maxValue - minValue) / 2.0)
+        }
+        func read() -> Double {
+            return ring[ringIndex] - midValue
         }
     }
 
     private var motionManager: CMMotionManager?
-    private var ringX = RingAverage()
-    private var ringY = RingAverage()
-    private var ringZ = RingAverage()
+    private var axisX = Axis()
+    private var axisY = Axis()
+    private var axisZ = Axis()
 }
 
