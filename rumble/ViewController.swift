@@ -8,18 +8,23 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
+    @IBOutlet weak var seismoView: SeismoView!
+    var seismoModel: SeismoModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        seismoModel = SeismoModel()
+        seismoModel?.delegate = seismoView
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidAppear(animated: Bool) {
+        seismoModel?.start()
     }
 
-
+    override func viewWillDisappear(animated: Bool) {
+        seismoModel?.stop()
+    }
 }
 
