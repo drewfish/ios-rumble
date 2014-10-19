@@ -18,7 +18,6 @@ let SEISMO_NEEDLE_OFFSET    = CGFloat(-12.5)    // where the point is located wi
 // Many of these are just cached values so we don't have to recompute a lot.
 @objc class SeismoDisplayData {
     var values              = RingBuffer(count: SEISMO_DATA_COUNT, repeatedValue: 0.0)
-    var index               = 0             // which datum is current
     var xPixelsPerDatum     = CGFloat()     // number of x pixels per reading
     var yPixelsPerMagnitude = CGFloat()     // number of y pixels per unit of magnitude
     var yScale              = SEISMO_AXIS_SPACING   // greatest magnitude (positive or negative) to show on the canvas
@@ -70,8 +69,7 @@ class SeismoViewController: UIViewController, SeismoModelDelegate {
 
     func valuesUpdated() {
 //println("VC valuesUpdated ----------- TODO --scale \(data.yScale) --newest \(data.values.newest)")
-        data.index = (data.index + 1) % data.values.count
-        backgroundView.bounds.origin.x = CGFloat(-data.index) * data.xPixelsPerDatum
+        backgroundView.bounds.origin.x = CGFloat(-data.values.index) * data.xPixelsPerDatum
         dataView.setNeedsDisplay()
         setNeedle()
     }

@@ -11,6 +11,8 @@ import Foundation
 
 // A fixed sized array that discards old values as new values are added.
 class RingBuffer {
+    var values: [Double]
+    var index: Int      // points to the newest value
 
     init(count: Int, repeatedValue: Double) {
         values = Array<Double>(count: count, repeatedValue: repeatedValue)
@@ -43,9 +45,5 @@ class RingBuffer {
     func reduce(initial: Double, combine: (accumulator: Double, newValue: Double) -> Double) -> Double {
         return values.reduce(initial, combine)
     }
-
-    private var values: [Double]
-    private var index: Int      // points to the newest value
 }
-
 
