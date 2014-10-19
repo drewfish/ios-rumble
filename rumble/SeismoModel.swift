@@ -10,7 +10,7 @@ import UIKit
 import CoreMotion
 
 
-let SEISMO_UPDATE_INTERVAL = 1.0 / 10.0
+let SEISMO_UPDATE_INTERVAL = 1.0 / 20.0
 let SEISMO_BUFFER_SIZE = 10
 
 
@@ -49,7 +49,7 @@ func richter(val: Double) -> Double {
         }
         if !motionManager!.accelerometerAvailable {
             // FUTURE -- handle no accelerometer
-            println("NOTE: no accellerometer available")
+//            println("NOTE: no accellerometer available")
             return
         }
         motionManager!.accelerometerUpdateInterval = SEISMO_UPDATE_INTERVAL

@@ -9,13 +9,16 @@
 /* Begin PBXBuildFile section */
 		610598FC19E9BCFF00491AC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610598FB19E9BCFF00491AC3 /* AppDelegate.swift */; };
 		610598FF19E9BCFF00491AC3 /* rumble.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 610598FD19E9BCFF00491AC3 /* rumble.xcdatamodeld */; };
-		6105990119E9BCFF00491AC3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6105990019E9BCFF00491AC3 /* ViewController.swift */; };
+		6105990119E9BCFF00491AC3 /* SeismoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6105990019E9BCFF00491AC3 /* SeismoViewController.swift */; };
 		6105990419E9BCFF00491AC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6105990219E9BCFF00491AC3 /* Main.storyboard */; };
 		6105990619E9BCFF00491AC3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6105990519E9BCFF00491AC3 /* Images.xcassets */; };
 		6105990919E9BCFF00491AC3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6105990719E9BCFF00491AC3 /* LaunchScreen.xib */; };
 		6105991519E9BCFF00491AC3 /* rumbleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6105991419E9BCFF00491AC3 /* rumbleTests.swift */; };
-		6105991F19E9C02100491AC3 /* SeismoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6105991E19E9C02100491AC3 /* SeismoView.swift */; };
 		6105992319E9C48400491AC3 /* SeismoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6105992219E9C48400491AC3 /* SeismoModel.swift */; };
+		612991C119F32D380095D325 /* SeismoAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 612991C019F32D380095D325 /* SeismoAssets.xcassets */; };
+		612991C319F32E160095D325 /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612991C219F32E160095D325 /* RingBuffer.swift */; };
+		612991C519F388200095D325 /* SeismoAxisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612991C419F388200095D325 /* SeismoAxisView.swift */; };
+		612991C719F390B30095D325 /* SeismoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612991C619F390B30095D325 /* SeismoDataView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,15 +36,18 @@
 		610598FA19E9BCFF00491AC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		610598FB19E9BCFF00491AC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		610598FE19E9BCFF00491AC3 /* rumble.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = rumble.xcdatamodel; sourceTree = "<group>"; };
-		6105990019E9BCFF00491AC3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6105990019E9BCFF00491AC3 /* SeismoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeismoViewController.swift; sourceTree = "<group>"; };
 		6105990319E9BCFF00491AC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6105990519E9BCFF00491AC3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6105990819E9BCFF00491AC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		6105990E19E9BCFF00491AC3 /* rumbleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rumbleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6105991319E9BCFF00491AC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6105991419E9BCFF00491AC3 /* rumbleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rumbleTests.swift; sourceTree = "<group>"; };
-		6105991E19E9C02100491AC3 /* SeismoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeismoView.swift; sourceTree = "<group>"; };
 		6105992219E9C48400491AC3 /* SeismoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeismoModel.swift; sourceTree = "<group>"; };
+		612991C019F32D380095D325 /* SeismoAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SeismoAssets.xcassets; sourceTree = "<group>"; };
+		612991C219F32E160095D325 /* RingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingBuffer.swift; sourceTree = "<group>"; };
+		612991C419F388200095D325 /* SeismoAxisView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeismoAxisView.swift; sourceTree = "<group>"; };
+		612991C619F390B30095D325 /* SeismoDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeismoDataView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,15 +89,14 @@
 		610598F819E9BCFF00491AC3 /* rumble */ = {
 			isa = PBXGroup;
 			children = (
+				612991BF19F32C670095D325 /* Seismometer */,
 				610598FB19E9BCFF00491AC3 /* AppDelegate.swift */,
-				6105990019E9BCFF00491AC3 /* ViewController.swift */,
 				6105990219E9BCFF00491AC3 /* Main.storyboard */,
 				6105990519E9BCFF00491AC3 /* Images.xcassets */,
 				6105990719E9BCFF00491AC3 /* LaunchScreen.xib */,
 				610598FD19E9BCFF00491AC3 /* rumble.xcdatamodeld */,
 				610598F919E9BCFF00491AC3 /* Supporting Files */,
-				6105991E19E9C02100491AC3 /* SeismoView.swift */,
-				6105992219E9C48400491AC3 /* SeismoModel.swift */,
+				612991C219F32E160095D325 /* RingBuffer.swift */,
 			);
 			path = rumble;
 			sourceTree = "<group>";
@@ -119,6 +124,18 @@
 				6105991319E9BCFF00491AC3 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		612991BF19F32C670095D325 /* Seismometer */ = {
+			isa = PBXGroup;
+			children = (
+				612991C019F32D380095D325 /* SeismoAssets.xcassets */,
+				612991C419F388200095D325 /* SeismoAxisView.swift */,
+				612991C619F390B30095D325 /* SeismoDataView.swift */,
+				6105992219E9C48400491AC3 /* SeismoModel.swift */,
+				6105990019E9BCFF00491AC3 /* SeismoViewController.swift */,
+			);
+			name = Seismometer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				612991C119F32D380095D325 /* SeismoAssets.xcassets in Resources */,
 				6105990419E9BCFF00491AC3 /* Main.storyboard in Resources */,
 				6105990919E9BCFF00491AC3 /* LaunchScreen.xib in Resources */,
 				6105990619E9BCFF00491AC3 /* Images.xcassets in Resources */,
@@ -221,11 +239,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6105990119E9BCFF00491AC3 /* ViewController.swift in Sources */,
+				612991C519F388200095D325 /* SeismoAxisView.swift in Sources */,
+				6105990119E9BCFF00491AC3 /* SeismoViewController.swift in Sources */,
 				610598FF19E9BCFF00491AC3 /* rumble.xcdatamodeld in Sources */,
-				6105991F19E9C02100491AC3 /* SeismoView.swift in Sources */,
+				612991C719F390B30095D325 /* SeismoDataView.swift in Sources */,
 				6105992319E9C48400491AC3 /* SeismoModel.swift in Sources */,
 				610598FC19E9BCFF00491AC3 /* AppDelegate.swift in Sources */,
+				612991C319F32E160095D325 /* RingBuffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,7 +371,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = rumble/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -362,7 +382,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = rumble/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -421,6 +441,7 @@
 				6105991A19E9BCFF00491AC3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6105991B19E9BCFF00491AC3 /* Build configuration list for PBXNativeTarget "rumbleTests" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +450,7 @@
 				6105991D19E9BCFF00491AC3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
