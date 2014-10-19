@@ -32,7 +32,7 @@ class SeismoDataView: UIView {
         for v in 0..<data.values.count {
             var value = CGFloat(data.values[v])
             x += data.xPixelsPerDatum
-            y = bounds.origin.y + data.yOrigin + value * data.yPixelsPerMagnitude
+            y = bounds.origin.y + data.yOrigin + (value * data.yPixelsPerMagnitude)
             CGContextAddLineToPoint(context, x, y)
         }
         CGContextStrokePath(context)

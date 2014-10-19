@@ -60,7 +60,7 @@ class SeismoViewController: UIViewController, SeismoModelDelegate {
     func scaleUpdated() {
 //println("VC scaleUpdated ----------- \(data.yScale)")
         var canvas = backgroundView.frame
-        data.yPixelsPerMagnitude = canvas.size.height / CGFloat(data.yScale)
+        data.yPixelsPerMagnitude = canvas.size.height / CGFloat(2.0 * data.yScale)
 
         // FUTURE -- rescale paper
         axisView.setNeedsDisplay()
