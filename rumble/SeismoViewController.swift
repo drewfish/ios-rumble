@@ -13,6 +13,9 @@ let SEISMO_DATA_COUNT       = 100
 let SEISMO_AXIS_SPACING     = 0.2               // how often (in magnitude) to draw a grid line
 let SEISMO_CANVAS_INSET     = CGSize(width: 20.0, height: 8.0)
 let SEISMO_NEEDLE_OFFSET    = CGFloat(-12.5)    // where the point is located within the needle image
+let SEISMO_COLOR_FILL       = UIColor(red: 252/255, green: 248/255, blue: 244/255, alpha: 1.0)
+let SEISMO_COLOR_MINOR      = UIColor(red: 246/255, green: 234/255, blue: 225/255, alpha: 1.0)
+let SEISMO_COLOR_MAJOR      = UIColor(red: 236/255, green: 219/255, blue: 201/255, alpha: 1.0)
 
 
 // Many of these are just cached values so we don't have to recompute a lot.
@@ -26,7 +29,7 @@ let SEISMO_NEEDLE_OFFSET    = CGFloat(-12.5)    // where the point is located wi
 
 
 class SeismoViewController: UIViewController, SeismoModelDelegate {
-    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var backgroundView: SeismoBackgroundView!
     @IBOutlet weak var axisView: SeismoAxisView!
     @IBOutlet weak var dataView: SeismoDataView!
     @IBOutlet weak var needleView: UIImageView!
@@ -36,7 +39,6 @@ class SeismoViewController: UIViewController, SeismoModelDelegate {
     var lastValue = 0.0     // GLUE for old SeisoModel implementation
 
     func sizeUpdated() {
-//println("VC sizeUpdated ----------- \(view.bounds)")
         var canvas = view.bounds
         canvas.origin.x     += SEISMO_CANVAS_INSET.width
         canvas.origin.y     += SEISMO_CANVAS_INSET.height
@@ -50,26 +52,33 @@ class SeismoViewController: UIViewController, SeismoModelDelegate {
         data.yPixelsPerMagnitude    = canvas.size.height / CGFloat(2.0 * data.yScale)
         data.yOrigin                = canvas.size.height / CGFloat(2.0)
 
-        // FUTURE -- rescale paper
+        backgroundView.sizeUpdated()
         axisView.setNeedsDisplay()
         dataView.setNeedsDisplay()
         setNeedle()
     }
 
     func scaleUpdated() {
-//println("VC scaleUpdated ----------- \(data.yScale)")
         var canvas = backgroundView.frame
         data.yPixelsPerMagnitude = canvas.size.height / CGFloat(2.0 * data.yScale)
 
-        // FUTURE -- rescale paper
+        backgroundView.scaleUpdated()
         axisView.setNeedsDisplay()
         dataView.setNeedsDisplay()
         setNeedle()
     }
 
     func valuesUpdated() {
-//println("VC valuesUpdated ----------- TODO --scale \(data.yScale) --newest \(data.values.newest)")
-        backgroundView.bounds.origin.x = CGFloat(-data.values.index) * data.xPixelsPerDatum
+        // update scale (if needed)
+        // (There are some clever things we can do by inspecting the newest value and the recently dropped value, but given the very spiky nature of our data we end up calculating the max most of the time anyway, so we'll just do that always.)
+        var m = self.data.values.reduce(0.0) { max($0, fabs($1)) }
+        var newScale = ceil(m / SEISMO_AXIS_SPACING) * SEISMO_AXIS_SPACING
+        if self.data.yScale != newScale {
+            self.data.yScale = newScale
+            self.scaleUpdated()
+        }
+
+        backgroundView.valuesUpdated()
         dataView.setNeedsDisplay()
         setNeedle()
     }
@@ -86,16 +95,6 @@ class SeismoViewController: UIViewController, SeismoModelDelegate {
         lastValue = raw
         dispatch_async(dispatch_get_main_queue(), {
             self.data.values.add(magnitude)
-
-            // update scale (if needed)
-            // (So there are some clever things we can do by inspecting the newest value and the recently dropped value, but given the very spiky nature of our data we end up calculating the max most of the time anyway, so we'll just do that always.)
-            var m = self.data.values.reduce(0.0) { max($0, fabs($1)) }
-            var newScale = ceil(m / SEISMO_AXIS_SPACING) * SEISMO_AXIS_SPACING
-            if self.data.yScale != newScale {
-                self.data.yScale = newScale
-                self.scaleUpdated()
-            }
-
             self.valuesUpdated()
         })
     }
@@ -106,13 +105,12 @@ class SeismoViewController: UIViewController, SeismoModelDelegate {
     }
 
     override func viewDidLoad() {
-//println("VC didLoad -----------")
         super.viewDidLoad()
         seismoModel = SeismoModel()
         seismoModel?.delegate = self
 
         // setup child views
-        backgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "paper"))
+        backgroundView.data = data
         axisView.data = data
         dataView.data = data
 

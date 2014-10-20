@@ -19,6 +19,7 @@
 		612991C319F32E160095D325 /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612991C219F32E160095D325 /* RingBuffer.swift */; };
 		612991C519F388200095D325 /* SeismoAxisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612991C419F388200095D325 /* SeismoAxisView.swift */; };
 		612991C719F390B30095D325 /* SeismoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612991C619F390B30095D325 /* SeismoDataView.swift */; };
+		612DA85019F45E4100BD00FA /* SeismoBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612DA84F19F45E4100BD00FA /* SeismoBackgroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		612991C219F32E160095D325 /* RingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingBuffer.swift; sourceTree = "<group>"; };
 		612991C419F388200095D325 /* SeismoAxisView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeismoAxisView.swift; sourceTree = "<group>"; };
 		612991C619F390B30095D325 /* SeismoDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeismoDataView.swift; sourceTree = "<group>"; };
+		612DA84F19F45E4100BD00FA /* SeismoBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeismoBackgroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 			children = (
 				612991C019F32D380095D325 /* SeismoAssets.xcassets */,
 				612991C419F388200095D325 /* SeismoAxisView.swift */,
+				612DA84F19F45E4100BD00FA /* SeismoBackgroundView.swift */,
 				612991C619F390B30095D325 /* SeismoDataView.swift */,
 				6105992219E9C48400491AC3 /* SeismoModel.swift */,
 				6105990019E9BCFF00491AC3 /* SeismoViewController.swift */,
@@ -239,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				612DA85019F45E4100BD00FA /* SeismoBackgroundView.swift in Sources */,
 				612991C519F388200095D325 /* SeismoAxisView.swift in Sources */,
 				6105990119E9BCFF00491AC3 /* SeismoViewController.swift in Sources */,
 				610598FF19E9BCFF00491AC3 /* rumble.xcdatamodeld in Sources */,
