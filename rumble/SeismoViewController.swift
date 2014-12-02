@@ -3,7 +3,8 @@
 //  rumble
 //
 //  Created by Andrew Folta on 10/11/14.
-//  Copyright (c) 2014 Andrew Folta. All rights reserved.
+//  Copyright (c) 2014 Andrew Folta.
+//  See the "License" section of README.md for terms of use.
 //
 
 import UIKit
